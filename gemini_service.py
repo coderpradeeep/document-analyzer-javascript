@@ -46,14 +46,13 @@ def analyze_document(document_text, user_prompt):
         user_message = f"User instructions: {user_prompt}\n\nDocument content:\n{truncated_text}"
         
         # Initialize Gemini model
-        model = genai.GenerativeModel('gemini-pro')
+        model = genai.GenerativeModel('gemini-1.5-flash')
         
         # Generate content with Gemini
+        combined_message = f"{system_message}\n\n{user_message}"
+        
         response = model.generate_content(
-            [
-                {"role": "user", "parts": [system_message]},
-                {"role": "user", "parts": [user_message]}
-            ],
+            combined_message,
             generation_config={
                 "temperature": 0.3,  # Lower temperature for more focused/factual responses
                 "max_output_tokens": 4000,  # Limit the length of the response
