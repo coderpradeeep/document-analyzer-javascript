@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-file-alt"></i> Document Analyzer</h1>
+            <p>Upload a document (.docx or .pdf), and get AI-powered analysis and summaries based on your custom prompts.</p>
+        </header>
+
+        <main>
+            <section id="upload-section" class="card">
+                <h2>Upload Document</h2>
+                <div class="upload-area" id="drop-area">
+                    <input type="file" id="file-input" accept=".pdf,.docx" hidden>
+                    <div class="upload-placeholder">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your file here or</p>
+                        <button id="browse-button" class="button">Browse Files</button>
+                        <p class="file-types">Supported formats: PDF, DOCX</p>
+                    </div>
+                </div>
+                <div id="file-info" class="hidden">
+                    <div class="file-details">
+                        <i class="fas fa-file-alt file-icon"></i>
+                        <div>
+                            <p id="file-name">filename.pdf</p>
+                            <p id="file-size">123 KB</p>
+                        </div>
+                        <button id="remove-file" class="icon-button"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <button id="extract-button" class="button primary-button hidden">Extract Text</button>
+            </section>
+
+            <section id="text-preview-section" class="card hidden">
+                <h2>Extracted Text</h2>
+                <div class="stats">
+                    <p id="word-count"><i class="fas fa-font"></i> <span>0</span> words</p>
+                </div>
+                <div class="preview-container">
+                    <div id="text-preview" class="text-preview"></div>
+                </div>
+            </section>
+
+            <section id="analysis-section" class="card hidden">
+                <h2>Document Analysis</h2>
+                <div class="prompt-container">
+                    <label for="user-prompt">Enter your analysis instructions:</label>
+                    <textarea id="user-prompt" placeholder="Examples:
+- Summarize this document in 3 paragraphs
+- Extract the main arguments and supporting evidence
+- Identify key technical terms and provide definitions
+- What are the main conclusions of this document?"></textarea>
+                </div>
+                <button id="analyze-button" class="button primary-button">Analyze Document</button>
+                
+                <div id="analysis-results-container" class="hidden">
+                    <h3>Analysis Results</h3>
+                    <div id="analysis-results" class="analysis-results"></div>
+                    <button id="download-button" class="button"><i class="fas fa-download"></i> Download Results</button>
+                </div>
+            </section>
+        </main>
+
+        <div id="loading-overlay" class="hidden">
+            <div class="spinner"></div>
+            <p id="loading-message">Processing...</p>
+        </div>
+
+        <footer>
+            <p>Document Analyzer uses Google's Gemini model for document analysis.</p>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.1.0/docx.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
